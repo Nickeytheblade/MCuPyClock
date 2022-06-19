@@ -1,4 +1,4 @@
-# MC ESP8266 Clock Program
+# MC ESP32 Clock Program
 
 # This file is executed on every boot (including wake-boot from deepsleep)
 # It establishes a network connection and sets the time with NTP.
@@ -28,7 +28,8 @@ wifis = {
 def initialize_screen():  # Initializes the SSD1306 screen
     global i2c
     global oled
-    i2c = machine.I2C(scl=machine.Pin(5), sda=machine.Pin(4))
+    #i2c = machine.I2C(scl=machine.Pin(5), sda=machine.Pin(4)) #ESP8266 i2c PINOUT
+    i2c = machine.I2C(scl=machine.Pin(22), sda=machine.Pin(21)) #ESP32 i2c PINOUT
     oled = ssd1306.SSD1306_I2C(128, 32, i2c)
     oledclear()
 
